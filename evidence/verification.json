@@ -1,0 +1,28 @@
+{
+  "result": "PASS",
+  "source_records": 20,
+  "sensor_counts": {
+    "sensor-1": 10,
+    "sensor-2": 10
+  },
+  "window_seconds": 60,
+  "slide_seconds": 30,
+  "watermark_seconds": 10,
+  "finalized_windows": 4,
+  "alerts": 3,
+  "codes_in_random_stream": [
+    102
+  ],
+  "all_means_match_input": true,
+  "no_missing_or_duplicate_alerts": true,
+  "csv_rules_tested": [
+    101,
+    102,
+    103,
+    104
+  ],
+  "csv_test_cases": 4,
+  "last_event_time_utc": "2026-10-15T11:19:47.834Z",
+  "watermark_utc": "2026-10-15T11:19:37.834Z",
+  "note": "Only finalized windows are emitted; the final open windows await newer events."
+}

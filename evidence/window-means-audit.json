@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "input_records": 20,
+  "spark_windows_compared": 4,
+  "includes_window_without_alert": true
+}

@@ -1,0 +1,30 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ДЗ6 Spark Streaming — Сліпко Людмила</title><meta name="description" content="Звіт і докази виконання домашнього завдання Data Engineering"><style>
+:root{color-scheme:light;--ink:#162538;--muted:#4c6278;--line:#cdd8e2;--accent:#075a84}*{box-sizing:border-box}body{font:17px/1.6 system-ui,sans-serif;color:var(--ink);margin:0;background:#f2f5f8}main{max-width:1080px;margin:auto;padding:48px 24px 70px}header{border-bottom:1px solid var(--line);padding-bottom:28px}.eyebrow{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}h1{font-size:clamp(30px,5vw,48px);line-height:1.15;margin:12px 0 18px}h2{font-size:24px;margin:35px 0 12px}p{max-width:900px}a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #c27800;outline-offset:4px}nav{display:flex;gap:20px;flex-wrap:wrap}ul{padding-left:24px}li{padding:6px 0}section{margin-top:28px}figure{margin:24px 0;padding:12px;background:white;border:1px solid var(--line);border-radius:8px}img{width:100%;height:auto;display:block}figcaption{font-size:14px;color:var(--muted);padding:10px 4px 0}pre{padding:22px;background:#e7edf3;overflow-x:auto;font-size:14px;line-height:1.5;border-radius:8px}code{font-family:ui-monospace,monospace}footer{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;color:var(--muted);font-size:15px}@media(max-width:500px){main{padding:28px 16px}pre{padding:14px}}
+</style></head><body><main><header><div class="eyebrow">Data Engineering · Сліпко Людмила</div><h1>ДЗ6 Spark Streaming</h1><p>Перевірено 20 записів двох сенсорів, вікна 60 секунд із кроком 30 секунд і watermark 10 секунд. У вихідному Kafka-топіку прочитано 3 алертів.</p><p>Це опублікований звіт про локальний запуск Python, Kafka та Spark. Програми запускаються за інструкцією у репозиторії.</p><nav aria-label="Матеріали"><a href="https://github.com/slipkoliudmyla/goit-de-hw-06">Репозиторій і код</a><a href="evidence/ДЗ6_Сліпко_Людмила.docx">Звіт DOCX</a><a href="evidence/verification.json">Результат перевірки JSON</a></nav></header><section><h2>Чекліст ментора</h2><ul><li><span aria-label="Перевірено">✅</span> Генерація даних сенсорів.</li><li><span aria-label="Перевірено">✅</span> Знаходження середніх значень показників.</li><li><span aria-label="Перевірено">✅</span> Побудова фільтраційного механізму, що визначить, які записи є алертами.</li><li><span aria-label="Перевірено">✅</span> Запис даних у Kafka-топік.</li></ul><p>Перевірено на справжньому Kafka 3.9.1. Докази для кожного пункту наведено в DOCX, скриншотах і сирих журналах у <a href="https://github.com/slipkoliudmyla/goit-de-hw-06/tree/main/evidence">evidence</a>.</p></section><section><h2>Два одночасні сенсори</h2><figure><a href="evidence/01-topics-and-producers.png"><img src="evidence/01-topics-and-producers.png" alt="Список топіків і фактичний stdout двох працюючих сенсорів" width="1600" height="1000"></a><figcaption>Скриншот браузерного переглядача реальних журналів. Значення, PID, partition і offset взяті з виконання програм.</figcaption></figure></section><section><h2>Обробка та читання алертів</h2><figure><a href="evidence/02-filter-and-alerts.png"><img src="evidence/02-filter-and-alerts.png" alt="Отримання та обробка даних і читання підтверджених Kafka алертів" width="1600" height="1300" loading="lazy"></a><figcaption>Зліва — фактичні журнали обробки, справа — повідомлення, прочитані з вихідного Kafka-топіку.</figcaption></figure></section><section><h2>Повна перевірка</h2><pre>{
+  &quot;result&quot;: &quot;PASS&quot;,
+  &quot;source_records&quot;: 20,
+  &quot;sensor_counts&quot;: {
+    &quot;sensor-1&quot;: 10,
+    &quot;sensor-2&quot;: 10
+  },
+  &quot;window_seconds&quot;: 60,
+  &quot;slide_seconds&quot;: 30,
+  &quot;watermark_seconds&quot;: 10,
+  &quot;finalized_windows&quot;: 4,
+  &quot;alerts&quot;: 3,
+  &quot;codes_in_random_stream&quot;: [
+    102
+  ],
+  &quot;all_means_match_input&quot;: true,
+  &quot;no_missing_or_duplicate_alerts&quot;: true,
+  &quot;csv_rules_tested&quot;: [
+    101,
+    102,
+    103,
+    104
+  ],
+  &quot;csv_test_cases&quot;: 4,
+  &quot;last_event_time_utc&quot;: &quot;2026-10-15T11:19:47.834Z&quot;,
+  &quot;watermark_utc&quot;: &quot;2026-10-15T11:19:37.834Z&quot;,
+  &quot;note&quot;: &quot;Only finalized windows are emitted; the final open windows await newer events.&quot;
+}</pre><h2>Що роблять ключові рядки</h2><p>withWatermark задає допустиме запізнення, а window групує події за їхнім часом. avg знаходить середні температуру й вологість. crossJoin порівнює кожне вікно з усіма правилами CSV, filter залишає збіги, а Kafka sink записує JSON-алерти.</p></section><footer><p>Дедлайн: 18 жовтня 2026 року, 23:45. Здачу в GoIT надсилає Людмила.</p></footer></main></body></html>

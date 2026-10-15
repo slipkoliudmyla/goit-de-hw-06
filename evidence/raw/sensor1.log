@@ -1,0 +1,15 @@
+/Users/liudmilaslipko/Documents/masters/DataEngineering/goit-de-hw-06/producer.py:52: DeprecationWarning: key_serializer does not implement kafka.serializer.Serializer
+  main()
+/Users/liudmilaslipko/Documents/masters/DataEngineering/goit-de-hw-06/producer.py:52: DeprecationWarning: value_serializer does not implement kafka.serializer.Serializer
+  main()
+START pid=12987 sensor=sensor-1 topic=slipkoliudmyla_hw06_building_sensors
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 0, "data": {"id": "sensor-1", "temperature": 37.46, "humidity": 66.93, "timestamp": 1792063052.6245198}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 2, "data": {"id": "sensor-1", "temperature": 40.9, "humidity": 80.97, "timestamp": 1792063067.7312498}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 4, "data": {"id": "sensor-1", "temperature": 39.8, "humidity": 79.56, "timestamp": 1792063082.748225}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 7, "data": {"id": "sensor-1", "temperature": 25.58, "humidity": 47.59, "timestamp": 1792063097.760826}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 9, "data": {"id": "sensor-1", "temperature": 43.87, "humidity": 60.43, "timestamp": 1792063112.7781918}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 11, "data": {"id": "sensor-1", "temperature": 43.02, "humidity": 22.92, "timestamp": 1792063127.790952}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 12, "data": {"id": "sensor-1", "temperature": 34.38, "humidity": 32.26, "timestamp": 1792063142.807153}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 15, "data": {"id": "sensor-1", "temperature": 35.88, "humidity": 55.18, "timestamp": 1792063157.817921}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 16, "data": {"id": "sensor-1", "temperature": 25.26, "humidity": 30.17, "timestamp": 1792063172.8251479}}
+{"event": "SENT", "topic": "slipkoliudmyla_hw06_building_sensors", "partition": 1, "offset": 19, "data": {"id": "sensor-1", "temperature": 30.59, "humidity": 79.14, "timestamp": 1792063187.834154}}
